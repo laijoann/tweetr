@@ -1,0 +1,17 @@
+section {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  margin: 2em;
+  padding: 10px;
+  border: solid #dddddd 1.5px
+}
+h2 {
+  border-bottom: solid black 1px;
+  margin-top: 0;
+}
+textarea {
+  width: 100%;
+}
+.counter {
+  float: right;
+}
