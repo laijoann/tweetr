@@ -1,0 +1,46 @@
+article {
+  border-radius: 5px;
+  margin: 2em;
+  border: solid #dddddd 1.5px;
+  background-color: #FFFFFF;
+}
+article:hover {
+  border: solid #aaaaaa 1.5px;
+}
+article header {
+  background-color: #eeeeee;
+  padding: 10px;
+  position: relative; /*need this if i want to use position: absolute later on*/
+  height: 80px;
+}
+article header img {
+  height: 60px;
+  width: 60px;
+  border-radius: 5px;
+  float: left;
+}
+article header h3 {
+  color: #5d7c7a;
+  margin: 0; /*cut out the auto added margin for <h3>*/
+  float: left;
+  margin: 10px;
+}
+article:hover header h3 {
+  color: #244751;
+}
+article header div {
+  float: right;
+  margin: 10px;
+  color: #aaaaaa;
+}
+article:hover header div {
+  color: #000000;
+}
+article p {
+  padding: 1em;
+}
+article footer {
+  border-top: solid #eeeeee .5px;
+  font-size: 80%;
+  padding: 1em;
+}

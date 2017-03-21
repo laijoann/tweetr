@@ -1,9 +1,9 @@
 section {
-  background-color: #eeeeee;
   border-radius: 5px;
   margin: 2em;
   padding: 10px;
-  border: solid #dddddd 1.5px
+  border: solid #dddddd 1.5px;
+  background-color: #eeeeee;
 }
 h2 {
   border-bottom: solid black 1px;
