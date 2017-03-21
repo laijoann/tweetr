@@ -11,6 +11,7 @@ h2 {
 }
 textarea {
   width: 100%;
+  resize: vertical;
 }
 .counter {
   float: right;
