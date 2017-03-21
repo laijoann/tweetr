@@ -41,14 +41,22 @@ var data = [
       "handle": "@johann49"
     },
     "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
+      "text": "<script>alert('uh oh!');</script>"
     },
     "created_at": 1461113796368
   }
 ];
 
 $( document ).ready(function() {
+
+  function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  } //to prevent cross-site scripting
+
   function createTweetElement (tweetObject) {
+    //$(`${escape(textFromUser)}`);
     let $tweet = `<article>
       <header>
         <img src="${tweetObject.user.avatars.small}">
@@ -57,15 +65,16 @@ $( document ).ready(function() {
       </header>
       <body>
         <p>
-          ${tweetObject.content.text}
+          ${escape(tweetObject.content.text)}
         </p>
       </body>
       <footer>
-        ${tweetObject.created_at}
+        ${new Date(tweetObject.created_at)}
       </footer>
     </article>`;
     return $tweet;
   }
+
   function renderTweets (tweetData) {
     let newDOM = "";
     tweetData.forEach((tweet) => {
@@ -73,5 +82,7 @@ $( document ).ready(function() {
     })
     return newDOM;
   }
+
   $('.container').append(renderTweets(data));
+
 })
