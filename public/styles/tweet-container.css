@@ -12,6 +12,10 @@ article header {
   padding: 10px;
   position: relative; /*need this if i want to use position: absolute later on*/
   height: 80px;
+  opacity: 0.8;
+}
+article:hover header {
+  opacity: 1;
 }
 article header img {
   height: 60px;
@@ -20,21 +24,13 @@ article header img {
   float: left;
 }
 article header h3 {
-  color: #5d7c7a;
   margin: 0; /*cut out the auto added margin for <h3>*/
   float: left;
   margin: 10px;
 }
-article:hover header h3 {
-  color: #244751;
-}
 article header div {
   float: right;
   margin: 10px;
-  color: #aaaaaa;
-}
-article:hover header div {
-  color: #000000;
 }
 article p {
   padding: 1em;
