@@ -5,7 +5,7 @@ section {
   border: solid #dddddd 1.5px;
   background-color: #eeeeee;
 }
-h2 {
+.new-tweet h2 {
   border-bottom: solid black 1px;
   margin-top: 0;
 }

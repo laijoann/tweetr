@@ -23,7 +23,7 @@ article header img {
   border-radius: 5px;
   float: left;
 }
-article header h3 {
+article header h2 {
   margin: 0; /*cut out the auto added margin for <h3>*/
   float: left;
   margin: 10px;
