@@ -66,6 +66,9 @@ $( document ).ready(function() {
   } //to prevent cross-site scripting
 
   function createTweetElement (tweetObject) {
+    let $date = new Date(tweetObject.created_at);
+    let $today = new Date();
+    let $date_posted = parseInt(Math.abs(($date - $today) / 86400000))
     let $tweet = `<article>
       <header>
         <img src="${tweetObject.user.avatars.small}">
@@ -78,7 +81,7 @@ $( document ).ready(function() {
         </p>
       </body>
       <footer>
-        ${new Date(tweetObject.created_at)}
+        ${$date_posted} day(s) ago
       </footer>
     </article>`;
     return $tweet;
