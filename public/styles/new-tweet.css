@@ -9,17 +9,24 @@ section {
   border-bottom: solid black 1px;
   margin-top: 0;
 }
+.new-tweet {
+  padding-bottom: 30px;
+}
 textarea {
   width: 100%;
   resize: vertical;
+}
+#errorMsg {
+  float: left;
+  visibility: hidden;
+  padding-left: 40px;
+}
+input {
+  float: left;
 }
 .counter {
   float: right;
 }
 .error {
   color: red;
-}
-textarea.error {
-  border: 2px solid red;
-  outline: none;
 }
