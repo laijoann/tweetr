@@ -41,7 +41,7 @@ $( document ).ready(function() {
         url: "/tweets",
         type: "POST",
         data: form.serialize(),
-        success: loadTweets
+        success: loadLastTweet
       });
 
       $('textarea').val('')
@@ -93,5 +93,19 @@ $( document ).ready(function() {
       newDOM += createTweetElement(tweet);
     })
     return $(".new-tweet").after(newDOM);
+  }
+
+  function renderLastTweet (tweetData) {
+    let newDOM = "";
+    newDOM += createTweetElement(tweetData[tweetData.length-1]);
+    console.log(newDOM)
+    return $(".new-tweet").after(newDOM);
+  }
+  function loadLastTweet () {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET',
+      success: renderLastTweet
+    });
   }
 })
