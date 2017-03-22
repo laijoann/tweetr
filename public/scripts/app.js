@@ -28,17 +28,22 @@ function renderTweets (tweetData) {
   tweetData.forEach((tweet) => {
     newDOM += createTweetElement(tweet);
   })
-  return $('.container').append(newDOM);
+  return $(".new-tweet").after(newDOM);
 }
 
 $( document ).ready(function() {
-
-  $("form").on("submit", function(event) {
+  var form = $("form");
+  form.on("submit", function(event) {
     event.preventDefault();
 
     const $errMsg = $("#errorMsg")
     const $submit = $("input");
     const $counter = parseInt($(".counter").text());
+
+    const flashMsg = () => {
+      $errMsg.css("visibility", "visible");
+      setTimeout(function () { $errMsg.css("visibility", "hidden"); }, 2000);
+    }
 
     let errorCheck = true;
     if ($counter === 140) {
@@ -47,17 +52,28 @@ $( document ).ready(function() {
       errorCheck = "tooLong";
     }
     if (errorCheck === "empty") {
-      $errMsg.css("visibility", "visible");
       $errMsg.text("FUck your empty tweet");
-      setTimeout(function () {$errMsg.css("visibility", "hidden")}, 2000);
+      flashMsg();
     } else if (errorCheck === "tooLong") {
-      $errMsg.css("visibility", "visible");
-      $errMsg.text("too fuking long u idiot")
-      setTimeout(function () {$errMsg.css("visibility", "hidden")}, 2000);
+      $errMsg.text("too long u idiot")
+      flashMsg();
     } else {
+
       $("textarea").serialize();
+
+      $.ajax({
+        url: "/tweets",
+        type: "POST",
+        data: form.serialize(),
+        success: loadTweets
+      });
+
+      $('textarea').val('')
+
     }
   }); //prevents browser from leaving page when submit button is clicked
+
+// {"user":{"name":"Descartes","avatars":{"small":"https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png","regular":"https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png","large":"https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"},"handle":"@rd"},"content":{"text":"Je pense , donc je suis"},"created_at":1461113959088}
 
   function loadTweets () {
     $.ajax({
