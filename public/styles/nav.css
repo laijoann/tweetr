@@ -21,3 +21,16 @@
   line-height: 2.5;
   float: left;
 }
+#nav-bar #compose {
+  float: right;
+  font-size: 150%;
+  margin: 7px;
+  border: solid black 1px;
+  padding: 18px 10px 18px 10px;
+  border-radius: 10px;
+  background-color: #C0D9AF;
+}
+#nav-bar #compose:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+}
