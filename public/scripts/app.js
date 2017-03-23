@@ -50,7 +50,7 @@ $( document ).ready(function() {
 
   function renderTweets (tweetData) {
     let newDOM = "";
-    tweetData.forEach((tweet) => {
+    tweetData.reverse().forEach((tweet) => {
       newDOM += createTweetElement(tweet);
     })
     return $(".new-tweet").after(newDOM);
