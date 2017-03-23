@@ -1,20 +1,19 @@
 $( document ).ready(function() {
 
   $( "#compose" ).click(function() {
-    if ($('.new-tweet').is(':visible')) {
-      $('.new-tweet').slideUp();
+    if ($(".new-tweet").is(":visible")) {
+      $(".new-tweet").slideUp();
     } else {
-      $('.new-tweet').slideDown();
-      $('textarea').focus();
+      $(".new-tweet").slideDown();
+      $("textarea").focus();
     }
-
-});
+  });
 
   var form = $("form");
   form.on("submit", function(event) {
     event.preventDefault();
 
-    const $errMsg = $("#errorMsg")
+    const $errMsg = $("#errorMsg");
     const $submit = $("input");
     const $counter = parseInt($(".counter").text());
 
@@ -44,23 +43,31 @@ $( document ).ready(function() {
         success: loadLastTweet
       });
 
-      $('textarea').val('')
+      $("textarea").val("");
 
     }
-  }); //prevents browser from leaving page when submit button is clicked
+  }); //prevents browser from leaving page when submit button is clicked, and validates the tweet before adding tweet to page
+
+  function renderTweets (tweetData) {
+    let newDOM = "";
+    tweetData.forEach((tweet) => {
+      newDOM += createTweetElement(tweet);
+    })
+    return $(".new-tweet").after(newDOM);
+  }
 
   function loadTweets () {
     $.ajax({
-      url: '/tweets',
-      method: 'GET',
+      url: "/tweets",
+      method: "GET",
       success: renderTweets
     });
-  }
+  } //for the first page load
 
   loadTweets();
 
   function escape(str) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   } //to prevent cross-site scripting
@@ -68,7 +75,7 @@ $( document ).ready(function() {
   function createTweetElement (tweetObject) {
     let $date = new Date(tweetObject.created_at);
     let $today = new Date();
-    let $date_posted = parseInt(Math.abs(($date - $today) / 86400000))
+    let $datePosted = parseInt(Math.abs(($date - $today) / 86400000))
     let $tweet = `<article>
       <header>
         <img src="${tweetObject.user.avatars.small}">
@@ -81,18 +88,15 @@ $( document ).ready(function() {
         </p>
       </body>
       <footer>
-        ${$date_posted} day(s) ago
+        ${$datePosted} day(s) ago
+        <div class="icons">
+          <i class="fa fa-flag-o" aria-hidden="true"></i>
+          <i class="fa fa-retweet" aria-hidden="true"></i>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </div>
       </footer>
     </article>`;
     return $tweet;
-  }
-
-  function renderTweets (tweetData) {
-    let newDOM = "";
-    tweetData.forEach((tweet) => {
-      newDOM += createTweetElement(tweet);
-    })
-    return $(".new-tweet").after(newDOM);
   }
 
   function renderLastTweet (tweetData) {
@@ -103,9 +107,9 @@ $( document ).ready(function() {
   }
   function loadLastTweet () {
     $.ajax({
-      url: '/tweets',
-      method: 'GET',
+      url: "/tweets",
+      method: "GET",
       success: renderLastTweet
     });
-  }
+  } //to load up just the latest submitted tweet
 })

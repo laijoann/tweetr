@@ -30,7 +30,7 @@ article header h2 {
 }
 article header div {
   float: right;
-  margin: 10px;
+  margin: 15px 5px 0 4px;
 }
 article p {
   padding: 1em;
@@ -39,4 +39,14 @@ article footer {
   border-top: solid #eeeeee .5px;
   font-size: 80%;
   padding: 1em;
+}
+article footer .icons {
+  visibility: hidden;
+  float: right;
+}
+article:hover footer .icons {
+  visibility: visible;
+}
+article footer .icons i {
+  padding: 2px;
 }
