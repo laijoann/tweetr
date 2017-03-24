@@ -13,12 +13,11 @@ const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const db = require("./lib/in-memory-db");
-
 // Mount the tweets routes at the "/tweets" path prefix:
 MongoClient.connect(MONGODB_URI, (err, db) => {
   const DataHelpers = require("./lib/data-helpers.js")(db);
   const tweetsRoutes = require("./routes/tweets")(DataHelpers);
+  let ObjectId = require('mongodb').ObjectId;
 
   app.use("/tweets", tweetsRoutes);
 })

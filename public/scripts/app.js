@@ -1,5 +1,31 @@
 $( document ).ready(function() {
 
+  $(".container").on("click", "i.fa-heart-o", function(e) {
+    let tweetID = $(e.target).data('id');
+    console.log(e.target);
+    console.log(tweetID)
+    $.ajax({
+      url: `/tweets/${tweetID}`,
+      type: "POST",
+      success: getLikeNum(tweetID)
+    });
+  });
+
+  function getLikeNum (tweetID) {
+    console.log("getLikeNum triggered on client side")
+    $.ajax({
+      url: `/tweets/${tweetID}`,
+      type: "GET",
+      success: renderLikeNum
+    });
+  } //
+  function renderLikeNum(tweetData) {
+    console.log(tweetData[0]["likes"])
+    console.log("^ u c dis?")
+    return; //TODO: get only the like array
+  }
+
+
   $( "#compose" ).click(function() {
     if ($(".new-tweet").is(":visible")) {
       $(".new-tweet").slideUp();
@@ -93,7 +119,7 @@ $( document ).ready(function() {
         <div class="icons">
           <i class="fa fa-flag-o" aria-hidden="true"></i>
           <i class="fa fa-retweet" aria-hidden="true"></i>
-          <i data-id="${tweetObject._id}" class="fa fa-heart-o likeButton" aria-hidden="true"></i>
+          <i data-id="${tweetObject._id}" class="fa fa-heart-o" aria-hidden="true"></i>
         </div>
       </footer>
     </article>`;

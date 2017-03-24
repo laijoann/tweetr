@@ -57,7 +57,7 @@ article footer {
   padding: 1em;
 }
 article footer .icons {
-  visibility: hidden;
+  /*visibility: hidden;*/
   float: right;
 }
 article:hover footer .icons {

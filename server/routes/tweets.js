@@ -7,6 +7,25 @@ const tweetsRoutes  = express.Router();
 
 module.exports = function(DataHelpers) {
 
+  tweetsRoutes.post("/:tweetID", function(req, res) {
+    DataHelpers.likeTweet(req.params.tweetID, (err) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        console.log("tweetroute ok. 201 sent")
+        res.status(201).send();
+      }
+    })
+  })
+
+  tweetsRoutes.get("/:tweetID", function(req, res) {
+    DataHelpers.likeTweetNum(req.params.tweetID, (err, result) => {
+      console.log(result) //TODO
+      if (err) throw err;
+      res.json(result);
+    })
+  })
+
   tweetsRoutes.get("/", function(req, res) {
     DataHelpers.getTweets((err, tweets) => {
       if (err) {
