@@ -1,3 +1,19 @@
+@media (max-width: 640px) {
+  main article p {
+    font-size: 1.3em;
+    padding: 0 16px 0 16px;
+  }
+  main article {
+    margin: 1em 2em 1em 2em;
+  }
+  main article header img {
+    height: 40px;
+    width: 40px
+  }
+  main article header {
+    height: 60px;
+  }
+}
 article {
   border-radius: 5px;
   margin: 2em;

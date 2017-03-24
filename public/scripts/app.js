@@ -6,6 +6,7 @@ $( document ).ready(function() {
     } else {
       $(".new-tweet").slideDown();
       $("textarea").focus();
+      $(document).scrollTop(0);
     }
   });
 
@@ -92,7 +93,7 @@ $( document ).ready(function() {
         <div class="icons">
           <i class="fa fa-flag-o" aria-hidden="true"></i>
           <i class="fa fa-retweet" aria-hidden="true"></i>
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <i data-id="${tweetObject._id}" class="fa fa-heart-o likeButton" aria-hidden="true"></i>
         </div>
       </footer>
     </article>`;
@@ -102,7 +103,6 @@ $( document ).ready(function() {
   function renderLastTweet (tweetData) {
     let newDOM = "";
     newDOM += createTweetElement(tweetData[tweetData.length-1]);
-    console.log(newDOM)
     return $(".new-tweet").after(newDOM);
   }
   function loadLastTweet () {

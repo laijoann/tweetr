@@ -1,3 +1,9 @@
+@media (max-width: 640px) {
+  .new-tweet {
+    display: none;
+  }
+}
+
 section {
   border-radius: 5px;
   margin: 2em;
