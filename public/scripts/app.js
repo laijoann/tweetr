@@ -9,7 +9,10 @@ $( document ).ready(function() {
       type: "POST",
       success: getLikeNum(tweetID)
     });
+    $(e.target).addClass("liked")
   });
+
+//TODO: send a username along with the tweetID
 
   function getLikeNum (tweetID) {
     console.log("getLikeNum triggered on client side")
@@ -20,8 +23,8 @@ $( document ).ready(function() {
     });
   } //
   function renderLikeNum(tweetData) {
-    console.log(tweetData[0]["likes"])
-    console.log("^ u c dis?")
+    debugger
+    //console.log(tweetData[0]["likes"])
     return; //TODO: get only the like array
   }
 

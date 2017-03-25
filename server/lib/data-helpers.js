@@ -7,14 +7,13 @@ module.exports = function makeDataHelpers(db) {
   return {
 
     likeTweet: function(tweetID, callback) {
-      //if (database.collection.object has a like key-value) { add to the value array }
-      //else (create a like key-value pair where value is an array with the user in it)
-      //callback(no error aka null, the value array.length)
-      //in the callback, you send back length and 200??
+
+      const likes = ["userA"]
+
       db.collection("tweets").update(
         { "_id" : new ObjectId(`${tweetID}`) },
         { $set:
-          { "likes": ["userA"] }
+          { "likes": likes }
         }, (err) => {
           if (err) throw err;
           console.log("tweet is.. prolly updated with the like") //TODO
